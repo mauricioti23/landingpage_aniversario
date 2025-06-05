@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contagem Regressiva do Meu Aniversário</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(to right, #f2709c, #ff9472);
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-top: 30px;
+      margin-bottom: 20px;
+    }
+
+    .contador {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      font-size: 1.8rem;
+      flex-wrap: wrap;
+      margin-bottom: 30px;
+    }
+
+    .contador div {
+      background: rgba(255, 255, 255, 0.2);
+      padding: 15px;
+      border-radius: 10px;
+      min-width: 80px;
+    }
+
+    .contador span {
+      display: block;
+      font-size: 1rem;
+      margin-top: 8px;
+    }
+
+    section {
+      margin: 30px 0;
+      background: rgba(255, 255, 255, 0.15);
+      padding: 25px;
+      border-radius: 12px;
+    }
+
+    section h2 {
+      font-size: 1.8rem;
+      margin-bottom: 15px;
+    }
+
+    .imagem-local img {
+      width: 100%;
+      max-width: 500px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      margin-top: 15px;
+    }
+
+    ul.presentes {
+      list-style: none;
+      font-size: 1.1rem;
+      padding: 0;
+    }
+
+    ul.presentes li {
+      margin: 10px 0;
+    }
+
+    footer {
+      margin-top: 40px;
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+
+    /* RESPONSIVO */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2rem;
+      }
+
+      .contador {
+        font-size: 1.5rem;
+        gap: 15px;
+      }
+
+      section h2 {
+        font-size: 1.5rem;
+      }
+
+      .imagem-local img {
+        max-width: 100%;
+      }
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 1.6rem;
+      }
+
+      .contador {
+        font-size: 1.3rem;
+        gap: 10px;
+      }
+
+      .contador div {
+        padding: 10px;
+        min-width: 70px;
+      }
+
+      section {
+        padding: 20px 15px;
+      }
+
+      section h2 {
+        font-size: 1.3rem;
+      }
+
+      ul.presentes {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Falta pouco para o meu aniversário! 🎉</h1>
+  <div class="contador" id="contador">
+    <div><strong id="dias">0</strong><span>Dias</span></div>
+    <div><strong id="horas">0</strong><span>Horas</span></div>
+    <div><strong id="minutos">0</strong><span>Minutos</span></div>
+    <div><strong id="segundos">0</strong><span>Segundos</span></div>
+  </div>
+
+  <!-- Seção: Local do Aniversário -->
+  <section class="imagem-local">
+    <h2>📍 Local do Aniversário</h2>
+    <p>Rua das Flores, 123 – Bairro Jardim – Cidade/UF</p>
+    <img src="sobreolocal.jpeg" alt="Local do Aniversário">
+  </section>
+
+  <!-- Seção: Lista de Presentes -->
+  <section>
+    <h2>🎁 Lista de Presentes</h2>
+    <ul class="presentes">
+      <li>Camisa tamanho M 👕</li>
+      <li>Livro de ficção 📚</li>
+      <li>Fone de ouvido Bluetooth 🎧</li>
+      <li>Vale-presente de loja online 💳</li>
+    </ul>
+  </section>
+
+  <footer>Data do aniversário: 22 de dezembro de 2025</footer>
+
+  <script>
+    function atualizarContador() {
+      const destino = new Date("2025-12-22T00:00:00");
+      const agora = new Date();
+      const diferenca = destino - agora;
+
+      const dias = Math.floor(diferenca / (1000 * 60 * 60 * 24));
+      const horas = Math.floor((diferenca / (1000 * 60 * 60)) % 24);
+      const minutos = Math.floor((diferenca / 1000 / 60) % 60);
+      const segundos = Math.floor((diferenca / 1000) % 60);
+
+      document.getElementById("dias").textContent = dias >= 0 ? dias : 0;
+      document.getElementById("horas").textContent = horas >= 0 ? horas : 0;
+      document.getElementById("minutos").textContent = minutos >= 0 ? minutos : 0;
+      document.getElementById("segundos").textContent = segundos >= 0 ? segundos : 0;
+    }
+
+    atualizarContador();
+    setInterval(atualizarContador, 1000);
+  </script>
+</body>
+</html>
